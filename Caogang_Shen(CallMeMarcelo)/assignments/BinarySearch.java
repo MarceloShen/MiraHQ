@@ -1,7 +1,6 @@
-/*
- * Template file for Assignment Binary Search 
- * Author: Caogang Shen
- * Period: 7th Period
+/**
+ * Template file for Assignment Binary Search Author: Caogang Shen Period: 7th
+ * Period
  */
 public class BinarySearch {
 
@@ -41,9 +40,13 @@ public class BinarySearch {
 	}
 
 	// Practice #1 Classical Binary Search
-	/*
+	/**
 	 * Search for the index of a specific value in a sorted array; return -1 if an
 	 * error occur; O(log n); always pick the middle index of the possible ranges;
+	 * 
+	 * @param array  the sorted array
+	 * @param target the target value
+	 * @return a possible index that outputs the exact value, -1 if an error occured
 	 */
 	public static int binarySearch(int[] array, int target) {
 		if (array == null || array.length == 0) { // if the array is null or empty, return -1
@@ -67,9 +70,14 @@ public class BinarySearch {
 	}
 
 	// Practice #2 Classical Binary Search in 2D Space
-	/*
+	/**
 	 * Search for the index of a specific value in a sorted 2D matrix; return -1 if
 	 * an error occur; O(log n); same logic as the binary search
+	 * 
+	 * @param matrix the sorted 2D matrix
+	 * @param target the target value
+	 * @return a possible index pair that outputs the exact value, {-1, -1} if an
+	 *         error occured
 	 */
 	public static int[] searchInMatrix(int[][] matrix, int target) {
 		int[] err = { -1, -1 };
@@ -101,10 +109,15 @@ public class BinarySearch {
 	}
 
 	// Practice #3 Closest In Sorted Array
-	/*
+	/**
 	 * Search for the index of a specific value in a sorted array return -1 if an
 	 * error occur; O(log n); same logic as the binary search to give a possible
 	 * index
+	 * 
+	 * @param array  the sorted array
+	 * @param target the target value
+	 * @return a possible index that outputs the closest value, -1 if an error
+	 *         occured
 	 */
 	public static int closest(int[] array, int target) {
 		if (array == null || array.length == 0) { // if the array is null or empty, return -1
@@ -140,10 +153,15 @@ public class BinarySearch {
 	}
 
 	// Practice #4 First Occurrence
-	/*
+	/**
 	 * Search for the index of a specific value in a sorted array return -1 if an
 	 * error occur; average case: O(log n), worse case: O(n); same logic as the
 	 * binary search to give a possible index
+	 * 
+	 * @param array  the sorted array
+	 * @param target the target value
+	 * @return the first possible index that outputs the exact value, -1 if an error
+	 *         occured
 	 */
 	public static int firstOccur(int[] array, int target) {
 		if (array == null || array.length == 0) { // if the array is null or empty, return -1
