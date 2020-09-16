@@ -1,5 +1,5 @@
 /*
- * Template file for Assignment Binary Search 
+ * Binary Search HW
  * Author: Eashver Elango
  * Period: 7
  */
@@ -120,6 +120,9 @@ public class BinarySearch {
 			return -1;
 		}
 
+		// Find the two the values that are the closest and 
+		// then check which one is closer, return that index
+		// O(n) = log(n)
 		int low=0, high=array.length-1;
 		while(low <= high){
 			int mid=low+(high-low)/2;
@@ -141,6 +144,11 @@ public class BinarySearch {
 			return -1;
 		}
 
+		// Do Binary search except when you find the value
+		// restrict the upper bound of the search by one everytime
+		// This will automatically find the earliest index of the 
+		// target and we return that.
+		// O(n) = log(n)
 		int low=0, high=array.length-1,return_val=-1;
 		while(low<=high){
 			int mid = low+(high-low)/2;
