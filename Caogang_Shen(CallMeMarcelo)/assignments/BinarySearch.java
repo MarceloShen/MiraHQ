@@ -27,6 +27,12 @@ public class BinarySearch {
 		int[] inputClosest1 = { 1, 2, 4, 8, 16 };
 		int resultClosest1 = closest(inputClosest1, 7);
 		System.out.println("resultClosest1: " + resultClosest1); // expect 3
+		int[] inputClosest2 = { 1, 3, 3, 4 };
+		int resultClosest2 = closest(inputClosest2, 2);
+		System.out.println("resultClosest2: " + resultClosest2); // expect 0 or 1 or 2
+		int[] inputClosest3 = { 1, 4, 6 };
+		int resultClosest3 = closest(inputClosest3, 5);
+		System.out.println("resultClosest3: " + resultClosest3); // expect 1 or 2
 
 		// test(s) for firstOccur()
 		int resultFirstOccur = firstOccur(inputArray2, 2);
@@ -35,20 +41,24 @@ public class BinarySearch {
 	}
 
 	// Practice #1 Classical Binary Search
+	/*
+	 * Search for the index of a specific value in a sorted array; return -1 if an
+	 * error occur; O(log n); always pick the middle index of the possible ranges;
+	 */
 	public static int binarySearch(int[] array, int target) {
-		if (array == null || array.length == 0) {
+		if (array == null || array.length == 0) { // if the array is null or empty, return -1
 			return -1;
 		}
 		int mid = (array.length - 1) / 2;
 		int low = 0;
 		int high = array.length - 1;
 		while (array[mid] != target) {
-			if (array[mid] < target) {
+			if (array[mid] < target) { // if the guessing index gives a value less than the target value
 				low = mid + 1;
 			} else {
 				high = mid - 1;
 			}
-			if (low > high) {
+			if (low > high) { // if no index is found
 				return -1;
 			}
 			mid = (low + high) / 2;
@@ -57,55 +67,68 @@ public class BinarySearch {
 	}
 
 	// Practice #2 Classical Binary Search in 2D Space
+	/*
+	 * Search for the index of a specific value in a sorted 2D matrix; return -1 if
+	 * an error occur; O(log n); same logic as the binary search
+	 */
 	public static int[] searchInMatrix(int[][] matrix, int target) {
 		int[] err = { -1, -1 };
-		if (matrix == null || matrix.length == 0) {
+		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
 			return err;
-		}
+		} // if the matrix is null or empty, return -1
 		int mid = (matrix.length * matrix[0].length - 1) / 2;
 		int low = 0;
 		int high = matrix.length * matrix[0].length - 1;
-		while (matrix[mid / matrix[0].length][mid % matrix[0].length] != target) {
-			if (matrix[mid / matrix[0].length][mid % matrix[0].length] < target) { // the target
+		int row = mid / matrix[0].length;
+		int col = mid % matrix[0].length;
+		while (matrix[row][col] != target) { // treating the matrix as an sorted array
+			if (matrix[row][col] < target) { // if the guessing index pair gives a value less than the target value
 				low = mid + 1;
 			} else {
 				high = mid - 1;
 			}
-			if (low > high) {
+			if (low > high) { // if no index pair is found
 				return err;
 			}
 			mid = (low + high) / 2;
+			row = mid / matrix[0].length;
+			col = mid % matrix[0].length;
 		}
 		int[] result = new int[2];
-		result[0] = mid / matrix[0].length;
-		result[1] = mid % matrix[0].length;
+		result[0] = row;
+		result[1] = col;
 		return result;
 	}
 
 	// Practice #3 Closest In Sorted Array
+	/*
+	 * Search for the index of a specific value in a sorted array return -1 if an
+	 * error occur; O(log n); same logic as the binary search to give a possible
+	 * index
+	 */
 	public static int closest(int[] array, int target) {
-		if (array == null || array.length == 0) {
+		if (array == null || array.length == 0) { // if the array is null or empty, return -1
 			return -1;
 		}
 		int mid = (array.length - 1) / 2;
 		int low = 0;
 		int high = array.length - 1;
 		while (array[mid] != target) {
-			if (array[mid] < target) {
+			if (array[mid] < target) { // if the guessing index gives a value less than the target value
 				low = mid + 1;
 			} else {
 				high = mid - 1;
 			}
-			if (low > high) {
-				int betweener;
-				if (array[mid] < target) {
+			if (low > high) { // if no index is found
+				int betweener; // the other index that might be close to the target
+				if (array[mid] < target) { // if the index is less than the potential correct index
 					betweener = mid + 1;
-					if (betweener > array.length - 1) {
+					if (betweener > array.length - 1) { // check out of bound
 						return mid;
 					}
 				} else {
 					betweener = mid - 1;
-					if (betweener < 0) {
+					if (betweener < 0) { // check out of bound
 						return mid;
 					}
 				}
@@ -117,25 +140,31 @@ public class BinarySearch {
 	}
 
 	// Practice #4 First Occurrence
+	/*
+	 * Search for the index of a specific value in a sorted array return -1 if an
+	 * error occur; average case: O(log n), worse case: O(n); same logic as the
+	 * binary search to give a possible index
+	 */
 	public static int firstOccur(int[] array, int target) {
-		if (array == null || array.length == 0) {
+		if (array == null || array.length == 0) { // if the array is null or empty, return -1
 			return -1;
 		}
 		int mid = (array.length - 1) / 2;
 		int low = 0;
 		int high = array.length - 1;
 		while (array[mid] != target) {
-			if (array[mid] < target) {
+			if (array[mid] < target) { // if the guessing index gives a value less than the target value
 				low = mid + 1;
 			} else {
 				high = mid - 1;
 			}
-			if (low > high) {
+			if (low > high) { // if no index is found
 				return -1;
 			}
 			mid = (low + high) / 2;
 		}
-		while (mid > 0 && (array[mid] == array[mid - 1])) {
+		while (mid > 0 && (array[mid] == array[mid - 1])) { // keep going down indexes to check the smallest first index
+															// occurance
 			mid--;
 		}
 		return mid;
