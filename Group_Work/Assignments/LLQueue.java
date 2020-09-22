@@ -78,7 +78,7 @@ public class LLQueue {
     // peek: Retrieves, but does not remove, the head of this queue,
     // or returns null if this queue is empty.
     public Object peek() {
-        return front;
+        return front.data;
         // TODO
     }
 
