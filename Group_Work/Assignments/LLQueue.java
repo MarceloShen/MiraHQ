@@ -57,7 +57,7 @@ public class LLQueue {
     public Object poll() {
         if (front != null) {
             // Assign a returned node to the front, then link the front to the next node
-            Node result = front;
+            Object result = front.data;
             front = front.next;
             return result;
         } else {
