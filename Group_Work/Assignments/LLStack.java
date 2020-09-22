@@ -2,7 +2,8 @@
 /**
  * This class will use Nodes to form a linked list. It implements the LIFO (Last
  * In First Out) methodology to reverse the input string.
- *
+ * 
+ * @author Caogang Shen, Ashley Mead, Brandon Yi
  **/
 
 public class LLStack {

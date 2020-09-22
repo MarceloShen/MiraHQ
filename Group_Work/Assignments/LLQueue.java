@@ -1,9 +1,9 @@
 // import jdk.jfr.internal.OldObjectSample;
 
-/*
+/**
  * This class implements a queue with linked list
- * Author: Meng Yang
- * Date: Fall 2018
+ * 
+ * @author Caogang Shen, Ashley Mead, Brandon Yi Date: Fall 2020
  */
 
 public class LLQueue {
@@ -29,11 +29,12 @@ public class LLQueue {
     private Node back;
 
     public LLQueue() {
-        
+
     }
 
     /**
      * offer(enqueue) adds the object at the back of the queue
+     * 
      * @param o object to be added
      */
     public void offer(Object o) {
@@ -41,7 +42,7 @@ public class LLQueue {
         if (back == null) {
             back = new Node(o, null);
             front = back;
-        // Create a new node and connect it to the back
+            // Create a new node and connect it to the back
         } else {
             back.next = new Node(o, null);
             back = back.next;
@@ -50,8 +51,9 @@ public class LLQueue {
     }
 
     /**
-     * poll(dequeue): retrieves and removes the head of this queue,
-     * or returns null if this queue is empty.
+     * poll(dequeue): retrieves and removes the head of this queue, or returns null
+     * if this queue is empty.
+     * 
      * @return The node that was removed, or null if this queue is empty
      */
     public Object poll() {
@@ -68,6 +70,7 @@ public class LLQueue {
 
     /**
      * Returns the size of linked list by traversing the list
+     * 
      * @return the number of nonnull nodes in the linked list
      */
     public int size() {
@@ -83,8 +86,9 @@ public class LLQueue {
     }
 
     /**
-     * peek: Retrieves, but does not remove, the head of this queue,
-     * or returns null if this queue is empty. (If the queue is empty front would be null)
+     * peek: Retrieves, but does not remove, the head of this queue, or returns null
+     * if this queue is empty. (If the queue is empty front would be null)
+     * 
      * @return The head of the queue, or null if this queue is empty
      */
     public Object peek() {
@@ -99,7 +103,7 @@ public class LLQueue {
      * @return whether list is empty
      */
     public boolean isEmpty() {
-        //If front is null, the rest of the list doesn't exist, so the list is empty.
+        // If front is null, the rest of the list doesn't exist, so the list is empty.
         return front == null;
         // TODO
     }
