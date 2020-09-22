@@ -55,7 +55,7 @@ public class LLStack {
             // Assign a new node to the head, then link the head to the next element,
             // deleting the original head,
             // and return the original head
-            Node oldHead = head;
+            Object oldHead = head.data;
             head = head.next;
             return oldHead;
         }
