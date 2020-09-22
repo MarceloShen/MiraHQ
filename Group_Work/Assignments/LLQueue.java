@@ -29,20 +29,19 @@ public class LLQueue {
     private Node back;
 
     public LLQueue() {
-        // LinkedList
-        // TODO
+        
     }
 
-    // offer(enqueue) adds the object at the back of the queue
     /**
-     * adds the object at the back of the queue
-     * 
+     * offer(enqueue) adds the object at the back of the queue
      * @param o object to be added
      */
     public void offer(Object o) {
+        // If the back is null, create the queue with a new node
         if (back == null) {
             back = new Node(o, null);
             front = back;
+        // Create a new node and connect it to the back
         } else {
             back.next = new Node(o, null);
             back = back.next;
@@ -50,10 +49,14 @@ public class LLQueue {
         // TODO
     }
 
-    // poll(dequeue): retrieves and removes the head of this queue,
-    // or returns null if this queue is empty.
+    /**
+     * poll(dequeue): retrieves and removes the head of this queue,
+     * or returns null if this queue is empty.
+     * @return The node that was removed, or null if this queue is empty
+     */
     public Object poll() {
         if (front != null) {
+            // Assign a returned node to the front, then link the front to the next node
             Node result = front;
             front = front.next;
             return result;
@@ -63,10 +66,14 @@ public class LLQueue {
         // TODO
     }
 
-    // Returns the size of linked list by traversing the list
+    /**
+     * Returns the size of linked list by traversing the list
+     * @return the number of nonnull nodes in the linked list
+     */
     public int size() {
         int counter = 0;
         Node iterator = front;
+        // Loop until a null node is reached and keep track of the number of nodes
         while (iterator != null) {
             iterator = iterator.next;
             counter++;
@@ -75,15 +82,21 @@ public class LLQueue {
         // TODO
     }
 
-    // peek: Retrieves, but does not remove, the head of this queue,
-    // or returns null if this queue is empty.
+    /**
+     * peek: Retrieves, but does not remove, the head of this queue,
+     * or returns null if this queue is empty. (If the queue is empty front would be null)
+     * @return The head of the queue, or null if this queue is empty
+     */
     public Object peek() {
         return front.data;
         // TODO
     }
 
-    //
+    /**
+     * @return whether list is empty
+     */
     public boolean isEmpty() {
+        //If front is null, the rest of the list doesn't exist, so the list is empty.
         return front == null;
         // TODO
     }

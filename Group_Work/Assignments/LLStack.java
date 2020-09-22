@@ -11,7 +11,7 @@ public class LLStack {
 
     // Constructor with no parameters for outer class
     public LLStack() {
-        // TODO
+
     }
 
     // This is an inner class specifically utilized for LLStack class,
@@ -22,8 +22,7 @@ public class LLStack {
 
         // Constructor with no parameters for inner class
         public Node() {
-            // TODO
-            // TODO
+            
         }
 
         // Parametrized constructor for inner class
@@ -33,8 +32,11 @@ public class LLStack {
         }
     }
 
-    // Adds a node as the first node element at the start of the list with the
-    // specified data.
+    /**
+     * Adds a node as the first node element at the start of the list with the
+     * specified data.
+     * @param itemData The data the added node contains
+     */
     public void addToStart(Object itemData) {
         // TODO
         head = new Node(itemData, head);
@@ -42,23 +44,31 @@ public class LLStack {
         // but not required to be a one liner.
     }
 
-    // Removes the head node and returns the data Object being
-    // deleted.
-    // Returns null if the list is empty.
+    /**
+     * Removes the head node
+     * @return The object being deleted or null if the list is empty
+     */
     public Object deleteHead() {
         if (head == null) {
             return null;// TODO
         } else {
+            // Assign a new node to the head, then link the head to the next element,
+            // deleting the original head,
+            // and return the original head
             Node oldHead = head;
             head = head.next;
             return oldHead;
         }
     }
 
-    // Returns the size of linked list by traversing the list
+    /**
+     * Traverses the list and:
+     * @return the size of the linked list
+     */
     public int size() {
         int counter = 0;
         Node iterator = head;
+        // Loop until a null node is reached and keep track of the number of nodes
         while (iterator != null) {
             iterator = iterator.next;
             counter++;
@@ -66,7 +76,11 @@ public class LLStack {
         return counter;
     }
 
-    // Finds if there is match for the given object
+    /**
+     * Finds if there is a match for the given object
+     * @param item The object to search for
+     * @return Whether there is a match for the object in the LinkedList
+     */
     public boolean contains(Object item) {
         Node iterator = head;
         while (iterator != null) {
@@ -78,8 +92,11 @@ public class LLStack {
         return false;// TODO
     }
 
-    // Finds the first node containing the target item, and returns a
-    // reference to that node. Return null if target not found.
+    /**
+     * Finds the first node containing the target item
+     * @param target the item being searched for
+     * @return A reference to the target item's node, or null if target not found
+     */
     private Node findData(Object target) {
         Node current = head;
         Object itemAtPosition;
@@ -112,11 +129,18 @@ public class LLStack {
         return retValue;
     }
 
+    /**
+     * 
+     * @return Whether the list is empty
+     */
     public boolean isEmpty() {
         return head == null;
         // TODO
     }
 
+    /**
+     * Clear the LinkedList
+     */
     public void clear() {
         head = null;
         // TODO
