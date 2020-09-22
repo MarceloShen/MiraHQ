@@ -22,7 +22,7 @@ public class LLStack {
 
         // Constructor with no parameters for inner class
         public Node() {
-            
+
         }
 
         // Parametrized constructor for inner class
@@ -35,6 +35,7 @@ public class LLStack {
     /**
      * Adds a node as the first node element at the start of the list with the
      * specified data.
+     * 
      * @param itemData The data the added node contains
      */
     public void addToStart(Object itemData) {
@@ -46,6 +47,7 @@ public class LLStack {
 
     /**
      * Removes the head node
+     * 
      * @return The object being deleted or null if the list is empty
      */
     public Object deleteHead() {
@@ -55,14 +57,15 @@ public class LLStack {
             // Assign a new node to the head, then link the head to the next element,
             // deleting the original head,
             // and return the original head
-            Object oldHead = head.data;
+            Object oldData = head.data;
             head = head.next;
-            return oldHead;
+            return oldData;
         }
     }
 
     /**
      * Traverses the list and:
+     * 
      * @return the size of the linked list
      */
     public int size() {
@@ -78,6 +81,7 @@ public class LLStack {
 
     /**
      * Finds if there is a match for the given object
+     * 
      * @param item The object to search for
      * @return Whether there is a match for the object in the LinkedList
      */
@@ -94,6 +98,7 @@ public class LLStack {
 
     /**
      * Finds the first node containing the target item
+     * 
      * @param target the item being searched for
      * @return A reference to the target item's node, or null if target not found
      */
