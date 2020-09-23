@@ -3,7 +3,8 @@
 /**
  * This class implements a queue with linked list
  * 
- * @author Caogang Shen, Ashley Mead, Brandon Yi Date: Fall 2020
+ * @since Fall 2020
+ * @author Caogang Shen, Ashley Mead, Brandon Yi
  */
 
 public class LLQueue {

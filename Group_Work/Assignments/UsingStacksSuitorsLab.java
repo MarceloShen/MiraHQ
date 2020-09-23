@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * 
- * UsingStacksSuitorsLab
+ * UsingStacksSuitorsLab:
  * 
  * This class is mostly a driver for playing with Strings as palindromes, both
  * iteratively and recursively. The UsingStacksSuitorsLab class itself is a
@@ -55,6 +55,12 @@ public class UsingStacksSuitorsLab implements Runnable {
 
 	}
 
+	/**
+	 * Print a reverse version of the target string
+	 * 
+	 * @example inputting "abc" will print out "cba"
+	 * @param target the target string
+	 */
 	public static void printReverse(String target) {
 		Stack<Character> reverser = new Stack<Character>();
 		for (int i = 0; i < target.length(); i++) {
@@ -68,6 +74,13 @@ public class UsingStacksSuitorsLab implements Runnable {
 
 	}
 
+	/**
+	 * Print a reverse version of the target string, but here is the catch. Ready?
+	 * The method is a recursion! Wow amazing! How is it possible?!
+	 * 
+	 * @example inputting "abc" will print out "cba"
+	 * @param target the target string
+	 */
 	public static void recPrintReverse(String target) {
 		// TODO
 		if (target.length() <= 1) {
@@ -78,6 +91,12 @@ public class UsingStacksSuitorsLab implements Runnable {
 		}
 	}
 
+	/**
+	 * Check whether a string is a palindrome and store it to a boolean
+	 * 
+	 * @param input a target string
+	 * @return whether it is a palindrome string
+	 */
 	public static boolean isPalindrome(String input) {
 		Stack<Character> reverser = new Stack<Character>();
 		String reversed = "";
@@ -91,6 +110,14 @@ public class UsingStacksSuitorsLab implements Runnable {
 		return (input.equals(reversed)); // TODO: use a stack
 	}
 
+	/**
+	 * Can I just say that the function of this method is SOOO obvious? Also there
+	 * is some smart recursion that is implemented in this method
+	 * 
+	 * @param sentence the target string, except it is called "sentence" for no
+	 *                 apparent reason
+	 * @return whether it is a palindrome string
+	 */
 	public static boolean isPalindromeRec(String sentence) {
 
 		if (sentence.length() <= 1) {
@@ -105,61 +132,109 @@ public class UsingStacksSuitorsLab implements Runnable {
 		// TODO
 	}
 
+	/**
+	 * I am a suitor, I got eliminated. That, my friend, is the game.
+	 * 
+	 * @actual_description given a number of ppl, every third person will be
+	 *                     eliminated, return the last one standing
+	 * @param numSuitors number of suitors to play this battle royale rip off
+	 * @return Winner winner, chicken dinner
+	 */
 	public static int findPlaceToStand(int numSuitors) {
 		if (numSuitors < 1) {
 			return -1;
 		}
-		if (Math.random() < 0.5) {
-			// queue implementation
-			Queue<Integer> line = new LinkedList<Integer>();
-			for (int i = 1; i <= numSuitors; i++) {
-				line.offer(i);
-			}
-			int count = 0;
-			while (line.size() > 1) {
-				count++;
-				if (count % 3 == 0) {
-					line.poll();
-				} else {
-					line.offer(line.poll());
-				}
-			}
-			return line.poll();
+		// queue implementation
+		// Queue<Integer> line = new LinkedList<Integer>();
+		// for (int i = 1; i <= numSuitors; i++) {
+		// line.offer(i);
+		// }
+		// int count = 0;
+		// while (line.size() > 1) {
+		// count++;
+		// if (count % 3 == 0) {
+		// line.poll();
+		// } else {
+		// line.offer(line.poll());
+		// }
+		// }
+		// return line.poll();
+		// // stack implementation
+		// Stack<Integer> line = new Stack<Integer>();
+		// Stack<Integer> line2 = new Stack<Integer>();
+		// for (int i = numSuitors; i > 0; i--) {
+		// line.push(i);
+		// }
+		// int count = 0;
+		// while (line.size() + line2.size() > 1) {
+		// while (!line.isEmpty()) {
+		// count++;
+		// if (count % 3 == 0) {
+		// System.out.println(line.pop());
+		// } else {
+		// line2.push(line.pop());
+		// }
+		// }
+		// while (!line2.isEmpty()) {
+		// count++;
+		// if (count % 3 == 0) {
+		// System.out.println(line2.pop());
+		// } else {
+		// line.push(line2.pop());
+		// }
+		// }
+		// }
+		// if (!line.isEmpty()) {
+		// return line.peek();
+		// } else {
+		// return line2.peek();
+		// }
 
-		} else {
-			// stack implementation
-			Stack<Integer> line = new Stack<Integer>();
-			Stack<Integer> line2 = new Stack<Integer>();
-			for (int i = numSuitors; i > 0; i--) {
-				line.push(i);
-			}
-			int count = 0;
-			while (line.size() + line2.size() > 1) {
-				while (!line.isEmpty()) {
+		Queue<Integer> lineQueued = new LinkedList<Integer>();
+		Queue<Integer> Middiant = new LinkedList<Integer>();
+		Stack<Integer> lineStacked = new Stack<Integer>();
+
+		for (int i = 1; i <= numSuitors; i++) {
+			Middiant.offer(i);
+		}
+		int count = 0;
+		while (Middiant.size() > 1) {
+			if (Math.random() < 0.5) {
+				while (!Middiant.isEmpty()) {
 					count++;
 					if (count % 3 == 0) {
-						System.out.println(line.pop());
+						Middiant.poll();
 					} else {
-						line2.push(line.pop());
+						lineQueued.offer(Middiant.poll());
 					}
 				}
-				while (!line2.isEmpty()) {
-					count++;
-					if (count % 3 == 0) {
-						System.out.println(line2.pop());
-					} else {
-						line.push(line2.pop());
-					}
+				while (!lineQueued.isEmpty()) {
+					Middiant.offer(lineQueued.poll());
 				}
-			}
-			if (!line.isEmpty()) {
-				return line.peek();
 			} else {
-				return line2.peek();
+				while (!Middiant.isEmpty()) {
+					count++;
+					if (count % 3 == 0) {
+						Middiant.poll();
+					} else {
+						lineStacked.push(Middiant.poll());
+					}
+				}
+				while (!lineStacked.isEmpty()) {
+					Middiant.offer(lineStacked.pop());
+				}
 			}
 		}
+		return Middiant.poll();
 	}
 
+	/**
+	 * This method will create a couple new threads to queue them and run them in
+	 * order
+	 * 
+	 * @warning the console/output/terminal will get spammed by the running threads
+	 * @return true if everything works
+	 */
 	public static boolean buildThreadQueue() { // returns true upon success
 		Queue<Thread> q = new LinkedList<Thread>();
 
