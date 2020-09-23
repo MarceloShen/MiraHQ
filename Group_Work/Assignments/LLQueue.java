@@ -93,7 +93,7 @@ public class LLQueue {
      * @return The head of the queue, or null if this queue is empty
      */
     public Object peek() {
-        if (isEmpty() == true) {
+        if (isEmpty()) {
             return null;
         }
         return front.data;
