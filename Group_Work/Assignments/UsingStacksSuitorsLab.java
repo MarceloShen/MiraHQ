@@ -106,57 +106,60 @@ public class UsingStacksSuitorsLab implements Runnable {
 	}
 
 	public static int findPlaceToStand(int numSuitors) {
-		// queue implementation
-		/*
-		Queue<Integer> line = new LinkedList<Integer>();
-		for (int i = 1; i <= numSuitors; i++) {
-			line.offer(i);
+		if (numSuitors < 1) {
+			return -1;
 		}
-		int count = 0;
-		while (line.size() > 1) {
-			count++;
-			if (count % 3 == 0) {
-				line.poll();
-			} else {
-				line.offer(line.poll());
+		if (Math.random() < 0.5) {
+			// queue implementation
+			Queue<Integer> line = new LinkedList<Integer>();
+			for (int i = 1; i <= numSuitors; i++) {
+				line.offer(i);
 			}
-		}
-		// TODO
-		return line.poll();
-		*/
-		
-		//stack implementation
-		Stack<Integer> line = new Stack<Integer>();
-		Stack<Integer> line2 = new Stack<Integer>();
-		for (int i = numSuitors; i > 0; i--) {
-			line.push(i);
-		}
-		int count = 0;
-		while (line.size()+line2.size() > 1) {
-			while (line.size() > 0) {
+			int count = 0;
+			while (line.size() > 1) {
 				count++;
 				if (count % 3 == 0) {
-					System.out.println(line.pop());
+					line.poll();
 				} else {
-					line2.push(line.pop());
+					line.offer(line.poll());
 				}
 			}
-			while (line2.size() > 0) {
-				count++;
-				if (count % 3 == 0) {
-					System.out.println(line2.pop());
-				} else {
-					line.push(line2.pop());
-				}
-			}
-		}
-		if (line.size() > 0) {
-			return line.peek();
+			return line.poll();
+
 		} else {
-			return line2.peek();
+			// stack implementation
+			Stack<Integer> line = new Stack<Integer>();
+			Stack<Integer> line2 = new Stack<Integer>();
+			for (int i = numSuitors; i > 0; i--) {
+				line.push(i);
+			}
+			int count = 0;
+			while (line.size() + line2.size() > 1) {
+				while (!line.isEmpty()) {
+					count++;
+					if (count % 3 == 0) {
+						System.out.println(line.pop());
+					} else {
+						line2.push(line.pop());
+					}
+				}
+				while (!line2.isEmpty()) {
+					count++;
+					if (count % 3 == 0) {
+						System.out.println(line2.pop());
+					} else {
+						line.push(line2.pop());
+					}
+				}
+			}
+			if (!line.isEmpty()) {
+				return line.peek();
+			} else {
+				return line2.peek();
+			}
 		}
 	}
-	
+
 	public static boolean buildThreadQueue() { // returns true upon success
 		Queue<Thread> q = new LinkedList<Thread>();
 
@@ -192,7 +195,7 @@ public class UsingStacksSuitorsLab implements Runnable {
 
 	@Override
 	public void run() {
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 100; i++) {
 			System.out.println(name + ": " + i + "th iteration");
 			try {
 				Thread.sleep(10);

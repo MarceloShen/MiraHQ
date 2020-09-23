@@ -12,7 +12,7 @@ public class LLStack {
 
     // Constructor with no parameters for outer class
     public LLStack() {
-
+        // Empty Constructor
     }
 
     // This is an inner class specifically utilized for LLStack class,
@@ -23,7 +23,7 @@ public class LLStack {
 
         // Constructor with no parameters for inner class
         public Node() {
-
+            // Empty Constructor
         }
 
         // Parametrized constructor for inner class

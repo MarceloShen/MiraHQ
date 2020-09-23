@@ -15,7 +15,7 @@ public class LLQueue {
 
         // Constructor with no parameters for inner class
         public Node() {
-
+            // Empty Constructor
         }
 
         // Parametrized constructor for inner class
@@ -29,7 +29,7 @@ public class LLQueue {
     private Node back;
 
     public LLQueue() {
-
+        // Empty Contructor
     }
 
     /**
