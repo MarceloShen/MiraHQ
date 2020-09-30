@@ -2,7 +2,7 @@
  * Template file for Assignment Binary Search Author: Caogang Shen Period: 7th
  * Period
  */
-public class BinarySearch {
+public class ST_7_BinarySearch_Caogang_Shen {
 
 	public static void main(String[] args) {
 		// sample tests
