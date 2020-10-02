@@ -2,7 +2,7 @@
  * Template file for Assignment Binary Search Author: Caogang Shen Period: 7th
  * Period
  */
-public class BinarySearch {
+public class ST_7_BinarySearch_Caogang_Shen {
 
 	public static void main(String[] args) {
 		// sample tests
@@ -64,7 +64,7 @@ public class BinarySearch {
 			if (low > high) { // if no index is found
 				return -1;
 			}
-			mid = (low + high) / 2;
+			mid = low + (high - low) / 2;
 		}
 		return mid;
 	}
@@ -98,7 +98,7 @@ public class BinarySearch {
 			if (low > high) { // if no index pair is found
 				return err;
 			}
-			mid = (low + high) / 2;
+			mid = low + (high - low) / 2;
 			row = mid / matrix[0].length;
 			col = mid % matrix[0].length;
 		}
@@ -126,37 +126,38 @@ public class BinarySearch {
 		int mid = (array.length - 1) / 2;
 		int low = 0;
 		int high = array.length - 1;
-		while (array[mid] != target) {
+
+		while (low <= high) {
 			if (array[mid] < target) { // if the guessing index gives a value less than the target value
 				low = mid + 1;
-			} else {
+			} else if (array[mid] > target) {
 				high = mid - 1;
+			} else {
+				return mid;
 			}
-			if (low > high) { // if no index is found
-				int betweener; // the other index that might be close to the target
-				if (array[mid] < target) { // if the index is less than the potential correct index
-					betweener = mid + 1;
-					if (betweener > array.length - 1) { // check out of bound
-						return mid;
-					}
-				} else {
-					betweener = mid - 1;
-					if (betweener < 0) { // check out of bound
-						return mid;
-					}
-				}
-				return (Math.abs(array[mid] - target) > Math.abs(array[betweener] - target)) ? mid : betweener;
-			}
-			mid = (low + high) / 2;
+			mid = low + (high - low) / 2;
 		}
-		return mid;
+
+		// if no index is found
+		int betweener; // the other index that might be close to the target
+		if (array[mid] < target) { // if the index is less than the potential correct index
+			betweener = mid + 1;
+			if (betweener > array.length - 1) { // check out of bound
+				return mid;
+			}
+		} else {
+			betweener = mid - 1;
+			if (betweener < 0) { // check out of bound
+				return mid;
+			}
+		}
+		return (Math.abs(array[mid] - target) > Math.abs(array[betweener] - target)) ? mid : betweener;
 	}
 
 	// Practice #4 First Occurrence
 	/**
 	 * Search for the index of a specific value in a sorted array return -1 if an
-	 * error occur; average case: O(log n), worse case: O(n); same logic as the
-	 * binary search to give a possible index
+	 * error occur; O(log n)
 	 * 
 	 * @param array  the sorted array
 	 * @param target the target value
@@ -170,22 +171,19 @@ public class BinarySearch {
 		int mid = (array.length - 1) / 2;
 		int low = 0;
 		int high = array.length - 1;
-		while (array[mid] != target) {
+		while (low <= high) {
 			if (array[mid] < target) { // if the guessing index gives a value less than the target value
 				low = mid + 1;
-			} else {
+			} else if (array[mid] > target) {
 				high = mid - 1;
+			} else if (low != mid) {
+				high = mid;
+			} else {
+				return mid;
 			}
-			if (low > high) { // if no index is found
-				return -1;
-			}
-			mid = (low + high) / 2;
+			mid = low + (high - low) / 2;
 		}
-		while (mid > 0 && (array[mid] == array[mid - 1])) { // keep going down indexes to check the smallest first index
-															// occurance
-			mid--;
-		}
-		return mid;
+		return -1; // Error
 	}
 
 }
