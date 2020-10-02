@@ -17,7 +17,7 @@ public class ST_P7_BinarySearch_Ashley_Mead {
         int[] inputArray3Elements = {0, 4, 7};
         // for 2D: empty, 1D array (1 row), regular
         int[][] empty = {};
-        int[][] oneDinput = {{1, 4, 6, 7, 9}, {}};
+        int[][] oneDinput = {{1, 4, 6, 7, 9}};
 
 		// sample tests
         // test for binarySearch()
@@ -37,7 +37,7 @@ public class ST_P7_BinarySearch_Ashley_Mead {
         int testInvalidBinarySearch = binarySearch(inputArrayInvalid, 4); // expect -1
         int test1ElementBinarySearch = binarySearch(inputArray1Element, 3); // expect -1
         int test2ElementsBinarySearch = binarySearch(inputArray2Elements, 4); // expect 1
-        int test3ElementsBinarySearch = binarySearch(inputArray3Elements, 5); // expect 2
+        int test3ElementsBinarySearch = binarySearch(inputArray3Elements, 7); // expect 2
         System.out.println("TestInvalid: " + testInvalidBinarySearch + ", Test1Element: " + test1ElementBinarySearch
         + ", Test2Elements: " + test2ElementsBinarySearch + ", Test3Elements: " + test3ElementsBinarySearch);
 		
@@ -50,9 +50,9 @@ public class ST_P7_BinarySearch_Ashley_Mead {
         int[] result5 = searchInMatrix(matrix, 6); 
         System.out.println("result 5: " + Arrays.toString(result5)); // expect [-1, -1]
 
-        // int[] testEmpty = searchInMatrix(empty, 0); // expect [-1, -1]
-        // int[] test1D = searchInMatrix(oneDinput, 7); // expect [-1, -1]
-        // System.out.println("TestEmpty: " + Arrays.toString(testEmpty) + ", Test1D: " + Arrays.toString(test1D));
+        int[] testEmpty = searchInMatrix(empty, 0); // expect [-1, -1]
+        int[] test1D = searchInMatrix(oneDinput, 7); // expect [0, 3]
+        System.out.println("TestEmpty: " + Arrays.toString(testEmpty) + ", Test1D: " + Arrays.toString(test1D));
         
         // test(s) for closest()
         System.out.println("\n-- Closest --");
@@ -148,75 +148,35 @@ public class ST_P7_BinarySearch_Ashley_Mead {
     // Assumption: The given matrix is not null, and has a size of N*M, where N >= 0 and M >= 0
     // BigO Notation: O(log n)
 	public static int[] searchInMatrix(int[][] matrix, int target) {
-        // TODO: does not work for 1D array, will clean up the code once it works properly
         // Edge cases
-        // if(matrix != null && matrix.length > 0) {
-        //     // for(int i = 0; i < matrix.length; i++) {
-        //     //     if (matrix[i].length == 0) {
-        //     //         return new int[] {-1, -1};
-        //     //     } // TODO: need to see if target is in the oneDarray given
-        //     // }
-        // } else {
-        //     return new int[] {-1, -1};
-        // }
-
-        int min = 0;
-        // Number of rows in 2D array
-        int max = matrix.length;
-
-        int mid = (int)(max/2);
-        // Setting a variable to represent the middle array in the matrix
-        int[] arr = matrix[mid];
-        int oneDindex = arr.length/2;
-        // Loop while we haven't found the value
-        while(matrix[mid][oneDindex] != target){
-            // Search the current array in the matrix using binary search method from Practice #1
-            oneDindex = binarySearch(arr, target);
-            // If the binary search algorithm returned a value that is not -1, that value is the index where the target was found.
-            // Return the index of the array in the matrix we just checked and the index returned by binarySearch()
-            if(oneDindex != -1) {
-                return new int[] {mid, oneDindex};
-            }
-            // If min is greater than max or they go outside the matrix bounds, the target is not in the matrix
-            if(min > max || min <= -1 || max <= -1 || mid <= -1|| min >= matrix.length || max >= matrix.length || mid >= matrix.length) {
-                return new int[] {-1, -1};
-            }
-            // Checking closest value in each array to see which array in the matrix to move to
-            else if(matrix[mid - 1][matrix[mid - 1].length - 1] > target) {
-                max = mid - 1;
-            }
-            else if(matrix[mid + 1][0] < target) {
-                min = mid + 1;
-            }
-
-            // Update mid based on adjustments in the else-ifs above
-            mid = (int)((max + min)/2);
-    
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return new int[] {-1, -1};
         }
-        
-        // If we exit the loop, then we have found the target. Return the indices at which the target was found.
-        return new int[] {mid, oneDindex};
-        
-        //--------------------------------------------------------------------//
-        // does not work as-is
-        // int rows = matrix.length;
-        // int cols = matrix[0].length;
-        // int left = 0;
-        // int right = rows * cols - 1; // index of bottom right corner element in matrix
-        // while(left <= right) {
-        //     int mid = left + (right - left) / 2;
-        //     int row = mid / cols;
-        //     int col = mid % cols;
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int left = 0;
+        // Index of bottom right corner element in matrix
+        int right = rows * cols - 1;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            // row that mid is in
+            int row = mid / cols;
+            // column that mid is in
+            int col = mid % cols;
             
-        //     if (matrix[row][col] == target) { // found, return the target indices
-        //         return new int[] {row, col};
-        //     } else if (matrix[row][col] == target) {
-        //         left = mid + 1;
-        //     } else {
-        //         right = mid - 1;
-        //     }
-        // }
-        // return new int[] {-1, -1}; // target not found
+            // Found, return the target indices
+            if (matrix[row][col] == target) {
+                return new int[] {row, col};
+            // Adjust left and right based on whether the current value is greater than or less than the target
+            } else if (matrix[row][col] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        // Target not found
+        return new int[] {-1, -1};
 	}
 	
     //Practice #3 Closest In Sorted Array
