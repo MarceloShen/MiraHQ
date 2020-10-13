@@ -32,7 +32,7 @@ public class ST_7_AllSubsets_Caogang_Shen {
 
     /**
      * This method check for all possible subSets of characters from characters in
-     * the original string. O(2^n) time and space complexity
+     * the original string. O(2^n) time complexity, O(n) space complexity
      * 
      * @param set The sample string that we get subsets from
      * @return All the possible subsets that has the characters from the original
