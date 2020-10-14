@@ -19,18 +19,18 @@ public class ST_P7_ReversedLinkedList_Eashver_Elango {
         }
     }
 
-    // Iterative LinkedList Reversal
+    // Iterative LinkedList Reversal O(n) time
     public Node reverseIterative(){
-        Node prev = null;
-        Node curr = this.head;
-        Node next = null;
-        while(curr != null){
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        Node prev = null; // Hold previous Node
+        Node curr = this.head; // Hold current node. At start this is the head node
+        Node next = null; // Hold next node. 
+        while(curr != null){ // Iterate over the entire LinkedList
+            next = curr.next; // Save our next Node
+            curr.next = prev; // Reverse the pointers
+            prev = curr; // Move our iterator forward as current is now previous
+            curr = next; // Move our iterator forward as current is now the next Node
         }
-        return prev;
+        return prev; // Since we end on a null in the while loop, the actually LL head is the previous Node value
     }
 
     // Recursive LinkedList Reversal
