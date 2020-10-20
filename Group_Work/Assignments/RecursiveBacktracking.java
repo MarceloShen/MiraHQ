@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Recursive Backtracking Example Methods
  * 
- * @author Marcelo Shen, Ashley Mead, Eashver Elango, (Brandon Yi) 
+ * @author Marcelo Shen, Ashley Mead, Eashver Elango, (Brandon Yi)
  */
 public class RecursiveBacktracking {
 
@@ -40,7 +40,11 @@ public class RecursiveBacktracking {
     }
 
     /**
-     * Base Case is where x <= 0 || y <= 0. Recursive Case is anything else.
+     * Base Case is where x <= 0 || y <= 0. Recursive Case is anything else. Level
+     * ranges from max(x, y) to (x + y). Number of Branches is 0, 1, or 3. If both x
+     * and y <= 0, there is 0 branch. Else if either x or y (but not both) > 0,
+     * there is 1 branch. Else there are 3 branches
+     * 
      * 
      * @param x             horizontal distance to move
      * @param y             vertical distance to move
@@ -54,7 +58,7 @@ public class RecursiveBacktracking {
             return;
         }
 
-        // Horizontal calculations based on x
+        // Horizontal calculations based on x (taking a step east)
         if (x > 0) {
             currentString.append("E ");
             // Case where you move 1 unit less far horizontally
@@ -63,7 +67,7 @@ public class RecursiveBacktracking {
             currentString.delete(currentString.length() - 2, currentString.length());
         }
 
-        // Vertical calculations based on y
+        // Vertical calculations based on y (taking a step north)
         if (y > 0) {
             currentString.append("N ");
             // Case where you move 1 unit less far vertically
@@ -72,7 +76,7 @@ public class RecursiveBacktracking {
             currentString.delete(currentString.length() - 2, currentString.length());
         }
 
-        // Diagonal calculations based on x and y
+        // Diagonal calculations based on x and y (taking a step northeast)
         if (x > 0 && y > 0) {
             currentString.append("NE ");
             // Case where you move 1 unit less far diagonally
@@ -99,7 +103,8 @@ public class RecursiveBacktracking {
     }
 
     /**
-     * The helper function for countBinary
+     * Base Case: n <= 0; Recursive Case: Everything else. Levels: n. Branches: 2,
+     * one for adding 0, one for adding 1 (0 branch if reaches the base case).
      * 
      * @param n             the number of digits for each binary number
      * @param currentString the current subcase
@@ -142,7 +147,9 @@ public class RecursiveBacktracking {
     }
 
     /**
-     * The helper function for maxSum
+     * Base Case: index >= L.size(); Recursive Case: Everything else. Levels:
+     * L.size() - index Branches: 0 if base case, 1 if (current sum + integer) >
+     * limit n, 2 other wise
      * 
      * @param L          List of integers
      * @param n          Limit that the maximum sum cannot exceed
@@ -161,9 +168,9 @@ public class RecursiveBacktracking {
             return maxSumHelper(L, n, currentSum, index + 1);
         }
 
-        // recursive case when the current sum can add the new integer
-        return Math.max(maxSumHelper(L, n, currentSum, index + 1),
-                maxSumHelper(L, n, currentSum + L.get(index), index + 1));
+        // recursive case when the current sum can add the new integer.
+        return Math.max(maxSumHelper(L, n, currentSum, index + 1), // don't add the current number to sum
+                maxSumHelper(L, n, currentSum + L.get(index), index + 1)); // add the current number to the sum
     }
 
     // ----------------------------------Partitionable------------------------------------------------------//
@@ -173,28 +180,29 @@ public class RecursiveBacktracking {
      * integers can be divided to two lists with equal sums. Calls the
      * partitionableHelper() method with the given param. O(n) space; O(2^n) time.
      * 
-     * @param L List of integers
+     * @param list List of integers
      * @return whether the List L can be separated into two equally summed sublists
      */
-    public static boolean partitionable(List<Integer> L) {
-        return partitionableHelper(L, 0, 0, 0); // Intialize with L, index 0, and sums both at 0
+    public static boolean partitionable(List<Integer> list) {
+        return partitionableHelper(list, 0, 0, 0); // Intialize with L, index 0, and sums both at 0
     }
 
     /**
-     * Helper method for partitionable
+     * Base Case: index >= list.size(); Recursive Case: Everything other index.
+     * Levels: list.size() - index. Branches: 0 if base case, 2 otherwise
      * 
-     * @param L     List of integers
+     * @param list  List of integers
      * @param index Compare sums from each side of the array up to this index
      * @param sum1  First sublist sum
      * @param sum2  Second sublist sum
      * @return whether the List L can be separated into two equally summed sublists
      */
-    private static boolean partitionableHelper(List<Integer> L, int index, int sum1, int sum2) {
-        if (index == L.size()) {
+    private static boolean partitionableHelper(List<Integer> list, int index, int sum1, int sum2) {
+        if (index >= list.size()) {
             return sum1 == sum2; // Base Case at the end of the list, check if the sums are equal
         }
         // Continue along the tree adding the next sum to either sum1 or sum2
-        return partitionableHelper(L, index + 1, sum1 + L.get(index), sum2)
-                || partitionableHelper(L, index + 1, sum1, sum2 + L.get(index));
+        return partitionableHelper(list, index + 1, sum1 + list.get(index), sum2) // add current num to sum1
+                || partitionableHelper(list, index + 1, sum1, sum2 + list.get(index)); // add current num to sum2
     }
 }
