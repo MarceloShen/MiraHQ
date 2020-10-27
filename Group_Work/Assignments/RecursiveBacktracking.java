@@ -238,7 +238,7 @@ public class RecursiveBacktracking {
      *                 /     \    /     \       /   \      /   \
      *              (6,0) (3,3) (4,2) (1,5) (5,1) (2,4) (3,3) (0,6)
      * ...
-     */                 
+     */
     private static boolean partitionableHelper(List<Integer> list, int index, int sum1, int sum2) {
         if (index == list.size()) {
             return sum1 == sum2; // Base Case at the end of the list, check if the sums are equal
