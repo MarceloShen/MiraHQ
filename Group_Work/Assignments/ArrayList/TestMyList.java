@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  */
 
 public class TestMyList {
-
+ 
 	/** Tests the two list implementations */
 	public static void main(String[] args) {
 		// Create an arrayList
@@ -102,8 +102,7 @@ public class TestMyList {
 		printList(l);
 
 		// clear the list with an iterator
-		System.out
-				.println("clear the list one element at a time with an iterator");
+		System.out.println("clear the list one element at a time with an iterator");
 		Iterator<Integer> it = l.iterator();
 		while (it.hasNext()) {
 			it.next();
@@ -167,8 +166,8 @@ public class TestMyList {
 	private static <E> MyList<E> createMyList(Class c) {
 		if (c == MyArrayList.class) {
 			return new MyArrayList<E>();
-		} else if (c == MyLinkedList.class) {
-			return new MyLinkedList<E>();
+		// } else if (c == MyLinkedList.class) {
+		// 	return new MyLinkedList<E>();
 		} else {
 			return null;
 		}
