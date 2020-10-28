@@ -22,12 +22,6 @@ public class LLStack {
         private Object data;
         private Node next;
 
-        // Constructor with no parameters for inner class
-        public Node() {
-            // to do
-            // to do
-        }
-
         // Parametrized constructor for inner class
         public Node(Object newData, Node nextLink) {
             this.data = newData;
