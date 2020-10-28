@@ -29,7 +29,7 @@ public class ST_P7_RecursionLab_Eashver_Elango {
 	public static void main( String args[] ) {	//invoke the recursive method here...
 		
 		/**
-		 * TODO: switch between the two commented lines below and execute this code, 
+		 * switch between the two commented lines below and execute this code, 
 		 * observing the output for both the iterative solution and the recursive solution.
 		 * To watch the recursive behaviour in action, set a breakpoint on the if statement
 		 * inside the recursiveSum() function

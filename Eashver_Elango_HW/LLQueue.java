@@ -12,21 +12,10 @@ class LLQueueForStudents{
         private Object data;
         private Node next;
 
-        // Constructor with no parameters for inner class
-        public Node() {
-           
-        }
-
         // Constructor for creating standalone Node for inner class
         public Node(Object newData){
             this.data = newData;
             this.next = null;
-        }
-
-        // Parametrized constructor for inner class
-        public Node(Object newData, Node nextLink) {
-            this.data = newData;
-            this.next = nextLink;
         }
     }
     
@@ -125,7 +114,7 @@ public class LLQueue {
     public static void main(String[] args) {
      // input data for testing
         String target = "Somethings!";
-        String palindrome = "a man a plan canal panama";
+        //String palindrome = "a man a plan canal panama";
 
         LLQueueForStudents list = new LLQueueForStudents();
         // objects to be added to list
@@ -133,7 +122,7 @@ public class LLQueue {
         Object object2 = (Character) target.charAt(1);
         Object object3 = (Character) target.charAt(2);
         Object object4 = (Character) target.charAt(9);
-        Object object20 = (Character) target.charAt(6); // will not be added to list
+        //Object object20 = (Character) target.charAt(6); // will not be added to list
 
         // add 4 objects to our linked list
         list.offer(object1);

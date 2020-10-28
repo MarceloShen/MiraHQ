@@ -3,7 +3,7 @@ public class ST_P7_ReversedLinkedList_Eashver_Elango {
     Node head;
 
     // Inner class Node
-    private class Node {
+    private static class Node {
         // Data parameter
         Object data;
         // next Node that this node connects to
@@ -34,7 +34,7 @@ public class ST_P7_ReversedLinkedList_Eashver_Elango {
     }
 
     // Recursive LinkedList Reversal
-    public Node reverseRecursive(Node curr){
+    public static Node reverseRecursive(Node curr){
         // Base Case: If we reach the end, return the final Node
         if(curr == null || curr.next == null){
             return curr; // this will be the new head of the function
@@ -45,5 +45,12 @@ public class ST_P7_ReversedLinkedList_Eashver_Elango {
         curr.next.next = curr; // Our next Node's next to point back to us. This is the reversal in action
         curr.next = null; // Since it's reversed, our current shouldn't point to anything right now
         return newHead; // return the head
+    }
+
+    public static void main(String[] args) {
+        Node n2 = new Node();
+        System.out.println(n2.data);
+        Node n1 = new Node(5, n2);
+        reverseRecursive(n1);
     }
 }
