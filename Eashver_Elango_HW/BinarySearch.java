@@ -94,7 +94,7 @@ public class BinarySearch {
 		// Binary search for the row and then Binary search that row
 		// O(n) = log(NM)
 		int lowrow = 0, highrow = matrix.length - 1;
-		int C = matrix.length-1, R = matrix[0].length - 1;
+		int R = matrix[0].length - 1;
 		while(lowrow<=highrow) {
 			int mid = lowrow+(highrow-lowrow)/2;
 			if(target >= matrix[mid][0] && target <= matrix[mid][R]){
