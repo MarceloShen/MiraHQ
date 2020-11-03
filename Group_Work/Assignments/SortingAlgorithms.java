@@ -6,6 +6,12 @@ import java.util.Scanner;
 /**
  * Several examples of sorting algorithms insert sort, bubble sort, merge sort,
  * quick sort and radix sort
+ * 
+ * ------------------------------------------------------------------
+ * We did ***Insert sort, Bubble sort, Merge sort, and Quick sort***
+ * ------------------------------------------------------------------
+ * 
+ * @author Marcelo Shen, Ashley Mead, Eashver Elango, Brandon Yi
  */
 
 public class SortingAlgorithms {
@@ -62,26 +68,54 @@ public class SortingAlgorithms {
 	 * Sort the array with insert sort
 	 */
 	public void insertSort() {
-
+		insert(a.length);
 	}
 
 	/**
 	 * Precondition: a is ordered from 0 to i-1 Postcondition: a is ordered from 0
 	 * to i
 	 */
-	private void insert(int i) {
+	private void insert(int n) {
+		for (int i = 1; i < n; i++) {
+			// saves the current value
+			int key = a[i];
+			int j = i - 1;
+			// moves any value behind and larger than the current value
+			// ahead of the current value 
+			while (j >= 0 && a[j] > key) {
+				a[j + 1] = a[j];
+				j--;
+			}
+			// puts the current value behind the last value moved
+			a[j + 1] = key;
+		}
 	}
 
 	/**
 	 * Sort the array with bubble sort
 	 */
 	public void bubbleSort() {
+		boolean isSorted = false;
+		while (!isSorted) {
+			// if no switching needs to be done, the items are sorted
+			isSorted = true;
+
+			for (int i = 0; i < a.length - 1; i++) {
+				// if the current item is greater than the next one
+				if (a[i] > a[i + 1]) {
+					isSorted = false;
+					// swap the items (so the lower item is before the higher one)
+					swap(i, i + 1);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Sort the array with merge sort (a faster algorithm)
 	 */
 	public void mergeSort() {
+		divideInTwoSortAndMerge(0, a.length-1);
 	}
 
 	/**
@@ -90,12 +124,13 @@ public class SortingAlgorithms {
 	private void divideInTwoSortAndMerge(int first, int last) {
 		if (first < last) {
 			// Midpoint
-
+			int m = (first + last) / 2;
 			// Sort a[first,...,mid] (using divideInTwoSortAndMerge)
-
+			divideInTwoSortAndMerge(first, m);
 			// Sort a[mid+1,...,last] (using divideInTwoSortAndMerge)
-
+			divideInTwoSortAndMerge(m + 1, last);
 			// Merge sorted halves
+			merge(first, m, last);
 		}
 		// else
 		// Base case: nothing to do
@@ -109,28 +144,48 @@ public class SortingAlgorithms {
 	private void merge(int first, int mid, int last) {
 
 		// Method: copy the two halves in a temp array in increasing order
-		// copy temp back in a
 
-		// Allocate a temp array on the heap
-		// temp must be big enough to receive the two halves of A
+		// Create sizes of temp arrays
+		int n1 = mid - first + 1;
+		int n2 = last - mid;
 
-		// Index for temp
-		int index = 0;
+		// Initialize Temp Arrays
+		int L[] = new int[n1];
+		int R[] = new int[n2];
 
-		// Start and end of the first half
-		int first1 = first;
-		int last1 = mid;
-		// Start and end of the second half
-		int first2 = mid + 1;
-		int last2 = last;
+		// Copy Data into Temp Arrays
+		for (int i = 0; i < n1; ++i)
+			L[i] = a[first + i];
+		for (int j = 0; j < n2; ++j)
+			R[j] = a[mid + 1 + j];
 
-		// Copy the two halves in temp (in increasing order)
+		// Merge temp arrays
+		int i = 0;
+		int j = 0;
+		int k = first;
+		while (i < n1 && j < n2) {
+			if (L[i] <= R[j]) {
+				a[k] = L[i];
+				i++;
+			} else {
+				a[k] = R[j];
+				j++;
+			}
+			k++;
+		}
+		// Copy remaining elements in L[]
+		while (i < n1) {
+			a[k] = L[i];
+			i++;
+			k++;
+		}
 
-		// Anything left in the first half
-
-		// Anything left in the second half
-
-		// Copy temp in a
+		// Copy remaining elements in R[]
+		while (j < n2) {
+			a[k] = R[j];
+			j++;
+			k++;
+		}
 	}
 
 	/**
@@ -146,14 +201,23 @@ public class SortingAlgorithms {
 	private void pickPivotAndSort(int first, int last) {
 		if (first < last) {
 			// pick the pivot
+			int pivot = a[pickPivotLocation(first, last)];
 
 			// Place the pivot at the start of the array
 
 			// Go through the array: place to the left of the pivot, any
 			// element less than the pivot
 			int toTheLeft = first; // index of the last element
-			                       // to the left of the pivot
-
+									// to the left of the pivot
+			for (int i = first; i <= last; i++) {
+				if (a[i] < pivot) {
+					toTheLeft++;
+					swap(toTheLeft, i);
+				}
+			}
+			swap(toTheLeft, first);
+			pickPivotAndSort(first, toTheLeft - 1);
+			pickPivotAndSort(toTheLeft + 1, last);
 			// Place the pivot between the elements less than the pivot
 			// and the elements greater than or equal to the pivot
 
