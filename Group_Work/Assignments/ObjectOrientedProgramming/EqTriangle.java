@@ -38,6 +38,6 @@ public class EqTriangle extends Shape {
 
     @Override
     public String toString() {
-        return "A Equilateral Triangle with sidelength=" + this.getLength() + ", which is a subclass of " + super.toString();
+        return "A Equilateral Triangle with side length=" + this.getLength() + ", which is a subclass of " + super.toString();
     }
 }
