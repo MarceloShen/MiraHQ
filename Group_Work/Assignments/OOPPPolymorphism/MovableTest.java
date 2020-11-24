@@ -1,4 +1,4 @@
-package polymorphism;
+package OOPPPolymorphism;
 /*Tester class for Movable, MovableCircle, and MovablePoint classes.
 * 
 * Question: What is the usage of the abstract method and abstract class?
