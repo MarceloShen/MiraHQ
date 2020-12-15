@@ -1,4 +1,4 @@
-package mapnSet;
+package WordCount;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +13,8 @@ public class WordCount {
 		System.out.println();
 
 		// read the book into a map
-		Scanner in = new Scanner(new File(/*file name or file path*/));
+		Scanner in = new Scanner(new File("Group_Work\\Assignments\\WordCount\\mobydick.txt"));
+		// Scanner in = new Scanner(new File(System.getProperty("user.dir") + "\\mobydick.txt"));
 		Map<String, Integer> wordCountMap = getCountMap(in);
 
 		for (String word : wordCountMap.keySet()) {
@@ -22,6 +23,14 @@ public class WordCount {
 				System.out.println(word + " occurs " + count + " times.");
 			}
 		}
+
+		for (String word : wordCountMap.keySet()) {
+			if (word.charAt(0) == 'a') {
+				int count = wordCountMap.get(word);
+				System.out.println(word + " occurs " + count + " times.");
+			}
+		}
+		
 	}
 
 	// Reads book text and returns a map from words to counts.
@@ -29,7 +38,13 @@ public class WordCount {
 		Map<String, Integer> wordCountMap = new TreeMap<>();
 
 		while (in.hasNext()) {
-			String word = in.next().toLowerCase();
+			// String word = in.next().toLowerCase();
+			String word = in.next().toLowerCase().replaceAll("\\p{Punct}", ""); //remove punctuation
+			
+			if (word.isEmpty()) {
+				continue;
+			}
+
 			if (wordCountMap.containsKey(word)) {
 				// seen this word before; increment count
 				int count = wordCountMap.get(word);
