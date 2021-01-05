@@ -2,6 +2,7 @@ package HashSetImplementation;
 
 // Implements a set of integers using a hash table.
 // The hash table uses separate chaining to resolve collisions.
+// Marcelo carried us. Ashley, Brandon, and Eashver helped fix bugs. Everyone worked together.
 /**
  * @author Marcelo Shen, Ashley Mead, Brandon Yi, Eashver Elango
  */
