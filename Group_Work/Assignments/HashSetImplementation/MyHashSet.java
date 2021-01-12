@@ -75,7 +75,7 @@ public class MyHashSet {
         if (elementData[hashedVal] != null) {
             HashEntry pre = elementData[hashedVal];
             if (pre.data == value) {
-                elementData[hashedVal] = null;
+                elementData[hashedVal] = elementData[hashedVal].next;
                 size--;
             }
             while (pre.next != null) {
