@@ -2,6 +2,8 @@ import java.util.*;
 
 /**
  * @author Marcelo Shen, Ashley Mead, Brandon Yi, Eashver Elango
+ * @Contributions: We all worked together to finish these problems, 
+ * no one gains authorship status on any of these functions alone
  */
 public class HashTable {
 
@@ -67,7 +69,7 @@ public class HashTable {
      * @param t the mixed string.
      * @return the extra letter in t that is not in s
      */
-    // Eashver did this and he is a genius
+    // Eashver did this
     public char findTheDifference(String s, String t) {
         int charCode = t.charAt(s.length()); // the tracking integer
         for(int i=0;i < s.length();++i){ 
