@@ -31,16 +31,16 @@ public class ST_P7_BinaryTreePracticePart1_Ashley_Mead {
     */
 
     // size
-    public int size() {
-        return size(overallRoot);
-    }
+    // public int size() {
+    //     return size(overallRoot);
+    // }
     
-    public int size(IntTreeNode node) {
-        if(node == null) {
-            return 0;
-        }
-        return size(node.left) + 1 + size(node.right);
-    }
+    // public int size(IntTreeNode node) {
+    //     if(node == null) {
+    //         return 0;
+    //     }
+    //     return size(node.left) + 1 + size(node.right);
+    // }
 
     // bstAdd1
     /*
