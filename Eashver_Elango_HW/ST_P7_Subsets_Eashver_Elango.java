@@ -14,6 +14,14 @@ public class ST_P7_Subsets_Eashver_Elango {
      * 
      */
     public static void main(String[] args) {
+        List<String> result0 = subSets("");
+        System.out.println(result0.toString());
+        System.out.print("\n");
+
+        List<String> result9 = subSets(null);
+        System.out.println(result9);
+        System.out.print("\n");
+
         List<String> result1 = subSets("abc");
         for (String subset : result1) {
             System.out.print(subset + ", ");
@@ -53,7 +61,7 @@ public class ST_P7_Subsets_Eashver_Elango {
     public static List<String> subSets(String set) {
         List<String> result = new ArrayList<>();
         // edge cases
-        if (set == null) {
+        if (set == null || result.size()==1) {
             return result;
         }
         char[] array = set.toCharArray();
