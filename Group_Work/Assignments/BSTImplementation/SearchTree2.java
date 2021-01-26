@@ -12,11 +12,11 @@ import java.util.*;
  * @author Marcelo Shen, Ashley Mead, Brandon Yi, Eashver Elango
  * 
  */
-public class SearchTree<E extends Comparable<E>> {
+public class SearchTree2<E extends Comparable<E>> {
     private SearchTreeNode<E> overallRoot; // root of overall tree
 
     // post: constructs an empty search tree
-    public SearchTree() {
+    public SearchTree2() {
         overallRoot = new SearchTreeNode<>(null);
 
     }
@@ -30,21 +30,24 @@ public class SearchTree<E extends Comparable<E>> {
     }
 
     // post: value added to tree so as to preserve binary search tree
-    private SearchTreeNode<E> add(SearchTreeNode<E> root, E value) {
+    private void add(SearchTreeNode<E> root, E value) {
 
-        // IF the current node is null, put the value in the current node
-        if (root == null) {
-            root = new SearchTreeNode<>(value);
-        }
         // If the value is smaller than the current node, go to the left node 
-        else if(value.compareTo(root.data) < 0) {
-            root.left = add(root.left, value);
+        if(value.compareTo(root.data) < 0) {
+            if (root.left == null) {
+                root.left = new SearchTreeNode<E>(value);
+            } else {
+                add(root.left, value);
+            }
         }
         // If the value is greater than the current node, go to the right node
         else if(value.compareTo(root.data) > 0) {
-            root.right = add(root.right, value);
+            if (root.right == null) {
+                root.right = new SearchTreeNode<E>(value);
+            } else {
+                add(root.right, value);
+            }
         }
-        return root;
     }
 
     // post: returns true if tree contains value, returns false otherwise

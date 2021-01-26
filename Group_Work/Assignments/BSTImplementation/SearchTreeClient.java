@@ -1,6 +1,7 @@
 // This program uses the SearchTree class to construct a binary
 // search tree of strings and a binary search tree of integers
 // and printing out each.
+package BSTImplementation;
 
 import java.util.*;
 
@@ -45,8 +46,11 @@ public class SearchTreeClient {
         System.out.println();
         System.out.println("Sorted list:");
         numbers.print();
+        System.out.println("----------------------------------------------");
+        numbers.printTreeShape();
         
         System.out.print("Enter int to remove(0 to quit)? ");
+        number = console.nextInt();
         while (number != 0) {
             numbers.remove(number);
             System.out.print("Next int to remove(0 to quit)? ");

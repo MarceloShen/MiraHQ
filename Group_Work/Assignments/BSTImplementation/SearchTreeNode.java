@@ -1,3 +1,4 @@
+package BSTImplementation;
 public class SearchTreeNode<E> {
     public E data;                   // data stored in this node
     public SearchTreeNode<E> left;   // left subtree
