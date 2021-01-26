@@ -70,11 +70,11 @@ public class SearchTree<E extends Comparable<E>> {
     public void remove(E value) {
         if (overallRoot.data == null) {
             return;
-        } else if (overallRoot.data.equals(value)) {
-            overallRoot.data = null;
-            return;
+        } 
+        overallRoot = remove(overallRoot, value);
+        if (overallRoot == null) {
+            overallRoot = new SearchTreeNode<E>(null);
         }
-        remove(overallRoot, value);
     }
     
     
